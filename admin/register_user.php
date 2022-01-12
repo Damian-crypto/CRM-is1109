@@ -1,4 +1,5 @@
 <?php
+	// include common functionalities for the web-page
 	include('../config/page_head.php');
 	include('../functions/functions.php');
 

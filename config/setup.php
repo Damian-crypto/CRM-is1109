@@ -1,4 +1,5 @@
 <?php
+	// setup database for the entire web-site
 	define('DB_SERVER', 'localhost:3306');
 	define('DB_USERNAME', 'damian');
 	define('DB_PASSWORD', '1234');

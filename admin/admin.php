@@ -1,5 +1,5 @@
 <?php
-	include('../config/page_head.php');
+	include('../config/page_head.php'); // include common page configurations
 ?>
 
 <html>

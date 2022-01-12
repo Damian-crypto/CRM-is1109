@@ -1,24 +1,32 @@
 <?php
-	session_start();
+	session_start(); // this will keep track of the session(current user logged in)
 
+	// include common functionalities of the site
 	include('config/setup.php');
 	include('functions/functions.php');
 
 	$show_error_msg = false;
 
+	// if the url(query) has 'login' keyword then this code segment will start working
 	if (isset($_GET['login'])) {
+		// check whether the user entered details are in the database
 		$result = checkUserExists($_POST['username'], $_POST['password'], $connection);
 		if ($result != 'null') {
+			// if yes user will redirect to the page according to his/her role
 			if ($result == 'admin') {
+				// session has the name of the current logged in user
 				$_SESSION['current_user'] = $_POST['username'];
+				// redirect user to admin page
 				header('location: admin/admin.php');
 			} else if ($result == 'customer') {
 				$_SESSION['current_user'] = $_POST['username'];
+				// redirect user to customer page
 				header('location: customer/customer.php');
 			}
+
 			$show_error_msg = false;
 		} else {
-			$show_error_msg = true;
+			$show_error_msg = true; // if there is no user in database show error message(by enabling this)
 		}
 	}
 ?>
@@ -38,7 +46,7 @@
 			}
 		</script>
 
-		<?php include('styles/css.php'); ?>
+		<link rel="stylesheet" href="styles/styles.css" />
 	</head>
 
 	<body>

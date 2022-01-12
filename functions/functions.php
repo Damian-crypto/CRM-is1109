@@ -3,6 +3,7 @@
 	 *  if yes return the "role" of that user, otherwise "null"
 	 */
 	function checkUserExists($username, $password, $db) {
+		// password is encrypted with "SHA1" algorithm
 		$query = "SELECT * FROM user WHERE userName='$username' AND password=sha1('$password')";
 		$result_set = mysqli_query($db, $query);
 		$data = mysqli_fetch_array($result_set, MYSQLI_ASSOC);

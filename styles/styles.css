@@ -2,3 +2,8 @@
 	border: 1px solid red;
 	color: red;
 }
+
+.success-msg {
+	border: 1px solid green;
+	color: green;
+}

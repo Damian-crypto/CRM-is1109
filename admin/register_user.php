@@ -1,14 +1,14 @@
 <?php
+	session_start();
+
 	// include common functionalities for the web-page
-	include('../config/page_head.php');
+	include('../config/setup.php');
 	include('../functions/functions.php');
 
 	$user_not_added = false;
 	$user_added = false;
 
-	print_r($_POST);
-
-	if (isset($_POST['register'])) {
+	if (isset($_GET['register'])) {
 		$username = $_POST['username'];
 		$firstName = $_POST['fName'];
 		$lastName = $_POST['lName'];
@@ -17,24 +17,20 @@
 		$role = $_POST['role'];
 
 		$query = "INSERT INTO user (userId, userName, fName, lName, password, email, role)
-		VALUES (NULL, $username, $firstName, $lastName, $pass, $email, $role)";
+		VALUES (NULL, '$username', '$firstName', '$lastName', SHA1('$pass'), '$email', '$role')";
 
-		if (insertAUser($query, $connection)) {
-			echo "User added";
+		if (executeQuery($query, $connection)) {
 			$user_added = true;
 		} else {
-			echo "Failed";
 			$user_not_added = true;
 		}
-	} else {
-		echo "not set";
 	}
 ?>
 
 <html>
 	<head>
 		<title>Tribal Exotic CRM | User Registration Page</title>
-		<?php include('../styles/css.php'); ?>
+		<link rel="stylesheet" href="../styles/styles.css" />
 	</head>
 
 	<body>
@@ -46,11 +42,11 @@
 			</div>
 		<?php } else if ($user_added) { ?>
 			<div class="success-msg">
-				<p><strong>User created successfully! </strong>try again.</p>
+				<p><strong>User created successfully!<strong></p>
 			</div>
 		<?php } ?>
 
-		<form action="register_user.php?register=1" method="post">
+		<form action="register_user.php?register" method="post">
 			<table>
 				<tr>
 					<td>User Name:</td>
@@ -80,6 +76,15 @@
 					<td>e-mail:</td>
 					<td>
 						<input type="email" name="email" placeholder="e-mail" />
+					</td>
+				</tr>
+				<tr>
+					<td>Role:</td>
+					<td>
+						<select name="role">
+							<option value="admin">Administrator</option>
+							<option value="customer">Customer</option>
+						</select>
 					</td>
 				</tr>
 			</table>

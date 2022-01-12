@@ -15,9 +15,10 @@
 		return "null";
 	}
 
-	/** This function will add a new user into the database
+	/** This function will execute the specified query
+	 *  if the query success, return true otherwise false
 	 */
-	function insertAUser($query, $db) {
+	function executeQuery($query, $db) {
 		if (mysqli_query($db, $query)) {
 			return true;
 		}

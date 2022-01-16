@@ -25,4 +25,15 @@
 
 		return false;
 	}
+
+	function getData($query, $db) {
+		$result_set = mysqli_query($db, $query);
+		$data = array();
+
+		while ($row = mysqli_fetch_assoc($result_set)) {
+			array_push($data, $row);
+		}
+
+		return $data;
+	}
 ?>

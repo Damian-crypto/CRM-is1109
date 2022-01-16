@@ -46,7 +46,7 @@
 			}
 		</script>
 
-		<link rel="stylesheet" href="styles/styles.css" />
+		<?php include("styles/css.php"); ?>
 	</head>
 
 	<body>

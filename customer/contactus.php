@@ -1,9 +1,12 @@
 <?php
+
+    $page = 'contactus';
+    $success = false;
+
 	include('page_header.php');
     include('../config/setup.php');
     include('../functions/functions.php');
 
-    $page = 'contactus';
 ?>
 <html>
 	<head>
@@ -50,12 +53,14 @@
                 </ul>
             <?php } ?>
 
-            <form>
+            <form action="contactus.php?message" method="get">
                 <label>Enter your message here:</label><br />
                 <textarea name="msg" type="textarea" cols="70" rows="10"></textarea><br />
                 <input type="submit" value="Send" />
             </form>
 		</div>
+
+        <?php if ($success) echo 'working'; ?>
 	
 		<div class="footer">
   			<p>Footer</p>

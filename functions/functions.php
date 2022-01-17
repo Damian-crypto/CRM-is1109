@@ -9,17 +9,18 @@
 		$data = mysqli_fetch_array($result_set, MYSQLI_ASSOC);
 
 		if (mysqli_num_rows($result_set) > 0) {
-			return $data['role'];
+			return true;
 		}
 
-		return "null";
+		return false;
 	}
 
 	/** This function will execute the specified query
 	 *  if the query success, return true otherwise false
 	 */
 	function executeQuery($query, $db) {
-		if (mysqli_query($db, $query)) {
+		$result = mysqli_query($db, $query) or die();
+		if ($result) {
 			return true;
 		}
 
@@ -36,4 +37,5 @@
 
 		return $data;
 	}
+
 ?>

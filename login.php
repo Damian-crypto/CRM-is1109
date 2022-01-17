@@ -18,10 +18,6 @@
 				$_SESSION['current_user'] = $_POST['username'];
 				// redirect user to admin page
 				header('location: admin/admin.php');
-			} else if ($result == 'customer') {
-				$_SESSION['current_user'] = $_POST['username'];
-				// redirect user to customer page
-				header('location: customer/customer.php');
 			}
 
 			$show_error_msg = false;

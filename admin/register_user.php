@@ -5,7 +5,7 @@
 	include('../config/setup.php');
 	include('../functions/functions.php');
 
-	$page = 'register_page';
+	$page = 'register';
 
 	$user_not_added = false;
 	$user_added = false;

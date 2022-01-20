@@ -16,6 +16,13 @@
 			<h1>Current Leads</h1>
 
             <table>
+                <tr>
+                    <td><button>Send Mail</button></td>
+                    <td><button>Create Lead</button></td>
+                </tr>
+            </table>
+
+            <table>
                 <?php
                     $query = "SELECT * FROM lead";
                     $data = getData($query, $connection);

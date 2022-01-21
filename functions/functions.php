@@ -5,11 +5,12 @@
 	function checkUserExists($username, $password, $db) {
 		// password is encrypted with "SHA1" algorithm
 		$query = "SELECT * FROM user WHERE userName='$username' AND password=sha1('$password')";
-		$result_set = mysqli_query($db, $query);
-		$data = mysqli_fetch_array($result_set, MYSQLI_ASSOC);
-
-		if (mysqli_num_rows($result_set) > 0) {
-			return true;
+		if ($result_set = mysqli_query($db, $query)) {
+			$cnt = mysqli_num_rows($result_set);
+			
+			if ($cnt > 0) {
+				return true;
+			}
 		}
 
 		return false;
@@ -27,6 +28,16 @@
 		return false;
 	}
 
+	function checkMatchingData($query, $db) {
+		$result_set = mysqli_query($db, $query) or die();
+
+		if (mysqli_num_rows($result_set) > 0) {
+			return true;
+		}
+
+		return false;
+	}
+
 	function getData($query, $db) {
 		$result_set = mysqli_query($db, $query);
 		$data = array();
@@ -34,6 +45,13 @@
 		while ($row = mysqli_fetch_assoc($result_set)) {
 			array_push($data, $row);
 		}
+
+		return $data;
+	}
+
+	function getRawData($query, $db) {
+		$result_set = mysqli_query($db, $query);
+		$data = mysqli_fetch_assoc($result_set);
 
 		return $data;
 	}

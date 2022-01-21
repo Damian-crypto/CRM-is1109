@@ -42,6 +42,10 @@
         header('location: contacts.php');
     }
 
+    if (isset($_GET['deals'])) {
+        header('location: deals.php');
+    }
+
     if (isset($_GET['message'])) {
         $success = true;
         $txt = $_GET['msg'];

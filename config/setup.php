@@ -5,5 +5,5 @@
 	define('DB_PASSWORD', '1234');
 	define('DB_NAME', 'tribalexotic');
 
-	$connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+	$connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME) or die();
 ?>

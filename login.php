@@ -11,7 +11,7 @@
 	if (isset($_GET['login'])) {
 		// check whether the user entered details are in the database
 		$result = checkUserExists($_POST['username'], $_POST['password'], $connection);
-		if ($result != 'null') {
+		if ($result) {
 			// if yes user will redirect to the page according to his/her role
 			if ($result == 'admin') {
 				// session has the name of the current logged in user

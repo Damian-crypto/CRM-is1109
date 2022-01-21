@@ -1,6 +1,7 @@
 <div class="navbar">
 	<a href="admin.php?home" <?php if ($page == 'admin') echo 'class="active"'; ?>>Home</a>
 	<a href="admin.php?leads" <?php if ($page == 'leads') echo 'class="active"'; ?>>Leads</a>
+	<a href="admin.php?deals" <?php if ($page == 'deals') echo 'class="active"'; ?>>Deals</a>
 	<a href="admin.php?contacts" <?php if ($page == 'contacts') echo 'class="active"'; ?>>Contacts</a>
 	<a href="admin.php?customers" <?php if ($page == 'customers') echo 'class="active"'; ?>>Customers</a>
 	<a href="admin.php?register" <?php if ($page == 'register') echo 'class="active"'; ?>>Register a user</a>

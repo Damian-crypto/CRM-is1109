@@ -30,6 +30,7 @@
 
                     if ($cnt > 0) {
                         for ($i = 0; $i < $cnt; $i++) {
+                            if ($data[$i]['status'] == 1) continue;
                             $query = "SELECT * FROM person WHERE personID=".$data[$i]['personID'];
                             $data = getData($query, $connection); ?>
 

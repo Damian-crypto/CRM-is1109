@@ -15,29 +15,68 @@
 		<div class="container">
 			<h1>Welcome, <?php echo $current_user; ?>!</h1>
 
-            <table>
-                <?php
-                    $query = "SELECT * FROM person";
-                    $data = getData($query, $connection);
-                    $cnt = count($data);
+            <div class="row">
+                <div class="column">
+                    <strong>My deals closing in this month</strong>
+                    <table border="1" cellpadding="10">
+                        <tr>
+                            <th>Deal Name</th>
+                            <th>Amount</th>
+                            <th>Closing Date</th>
+                            <th>Stage</th>
+                            <th>Contact</th>
+                        </tr>
+                        <?php
+                            $query = "SELECT * FROM deal WHERE closingDate <= '".date('Y-m').'-31'."'";
+                            $data = getData($query, $connection);
+                            $cnt = count($data);
 
-                    if ($cnt > 0) {
-                        for ($i = 0; $i < $cnt; $i++) {?>
-                            <tr>
-                                <td>
-                                    <table border="1">
-                                        <tr><td rowspan="3"><img width="60" src="../images/user.png" /></td></tr>
-                                        <tr><td colspan="2"><h2><?php echo $data[$i]['fName'].' '.$data[$i]['lName']; ?></h2></td><td rowspan="3"><button>Delete</button><br /><button>Edit</button></td></tr>
-                                        <tr><td>Phone: <?php echo $data[$i]['phoneNo']; ?></td><td>Email: <?php echo $data[$i]['email']; ?></td></tr>
-                                        <tr><td colspan="2">Title: <?php echo $data[$i]['title']; ?></td></tr>
-                                    </table>
-                                </td>
-                            </tr>
+                            if ($cnt > 0) {
+                                for ($i = 0; $i < $cnt; $i++) {
+                                    $query = "SELECT * FROM person WHERE personID=".$data[$i]['contactID']."";
+                                    $contactData = getRawData($query, $connection);
+                                ?>
+                                    <tr>
+                                        <td><?php echo $data[$i]['dealName']; ?></td>
+                                        <td>$ <?php echo $data[$i]['amount']; ?></td>
+                                        <td><?php echo $data[$i]['closingDate']; ?></td>
+                                        <td><?php echo $data[$i]['description']; ?></td>
+                                        <td><?php echo $contactData['fName'].' '.$contactData['lName']; ?></td>
+                                    </tr>
 
-                        <?php }
-                    }
-                ?>
-            </table>
+                                <?php }
+                            }
+                        ?>
+                    </table>
+                </div>
+                <div class="column">
+                    <strong>Conversations</strong>
+                    <table>
+                        <?php
+                            $query = "SELECT * FROM messages";
+                            $data = getData($query, $connection);
+                            $cnt = count($data);
+
+                            if ($cnt > 0) {
+                                for ($i = 0; $i < $cnt; $i++) {
+                                    $query = "SELECT * FROM person WHERE personID=".$data[$i]['personID'];
+                                    $personData = getRawData($query, $connection);
+                                    ?>
+                                    <tr>
+                                        <table border="1" cellpadding="10">
+                                            <tr>
+                                                <td>From: <?php echo $personData['fName'].' '.$personData['lName']; ?></td>
+                                                <td>Message: <?php echo $data[$i]['message']; ?></td>
+                                                <td><button>Reply</button><br /><button>Delete</button></td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                        <?php   }
+                            }
+                        ?>
+                    </table>
+                </div>
+            </div>
 		</div>
 	</body>
 </html>

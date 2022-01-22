@@ -5,7 +5,6 @@
 	if (isset($_GET['message'])) {
 		$query = "SELECT * FROM person WHERE email='$_GET[email]'";
 		if (!checkMatchingData($query, $connection)) {
-			echo "adding new items....";
 			$query = "INSERT INTO person VALUE 
 			(NULL, '$_GET[fName]', '$_GET[lName]', '$_GET[email]', '$_GET[phone_no]', '$_GET[title]')";
 			executeQuery($query, $connection);

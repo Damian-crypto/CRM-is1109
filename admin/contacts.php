@@ -1,6 +1,7 @@
 <?php
     include('page_header.php');
     $page = 'contacts';
+    $data = [];
 ?>
 
 <html>
@@ -37,12 +38,27 @@
                         for ($i = 0; $i < $cnt; $i++) {?>
                             <tr>
                                 <td>
-                                    <table border="1">
-                                        <tr><td rowspan="3"><img width="60" src="../images/user.png" /></td></tr>
-                                        <tr><td colspan="2"><h2><?php echo $data[$i]['fName'].' '.$data[$i]['lName']; ?></h2></td><td rowspan="3"><button>Delete</button><br /><button>Edit</button></td></tr>
-                                        <tr><td>Phone: <?php echo $data[$i]['phoneNo']; ?></td><td>Email: <?php echo $data[$i]['email']; ?></td></tr>
-                                        <tr><td colspan="2">Title: <?php echo $data[$i]['title']; ?></td></tr>
-                                    </table>
+                                    <form action="contacts.php" method="GET">
+                                        <table border="1">
+                                            <tr><td rowspan="3"><img width="60" src="../images/user.png" /></td></tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    First Name: <input name="fName" type="text" value="<?php echo $data[$i]['fName'] ?>" />
+                                                    Last Name: <input name="lName" type="text" value="<?php echo $data[$i]['lName']; ?>" />
+                                                </td>
+                                                <td rowspan="3">
+                                                    <form action="contacts.php" method="GET">
+                                                        <input name="delete" value="<?php echo $data[$i]['personID']; ?>" hidden />
+                                                        <input type="submit" value="Delete" />
+                                                    </form>
+                                                    <input type="submit" value="Change & Save" />
+                                                </td>
+                                            </tr>
+                                            <tr><td>Phone: <input name="phone_no" type="text" value="<?php echo $data[$i]['phoneNo']; ?>" /><td>Email: <input name="email" type="text" value="<?php echo $data[$i]['email']; ?>" /></tr>
+                                            <tr><td colspan="2">Title: <input name="title" type="text" value="<?php echo $data[$i]['title']; ?>" /></tr>
+                                            <input name="update" value="<?php echo $data[$i]['personID']; ?>" hidden />
+                                        </table>
+                                    </form>
                                 </td>
                             </tr>
 

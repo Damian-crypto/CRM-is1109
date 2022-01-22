@@ -57,4 +57,18 @@
         }
     }
 
+    if (isset($_GET['update'])) {
+        $query = "UPDATE person SET fName='$_GET[fName]', lName='$_GET[lName]', email='$_GET[email]', phoneNo='$_GET[phone_no]', title='$_GET[title]' WHERE personID=$_GET[update]";
+        if (!executeQuery($query, $connection)) {
+            echo 'Update failed!';
+        }
+    }
+
+    if (isset($_GET['delete'])) {
+        $query = "DELETE FROM person WHERE personID=$_GET[delete]";
+        if (!executeQuery($query, $connection)) {
+            echo 'Delete failed!';
+        }
+    }
+
 ?>

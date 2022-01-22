@@ -18,4 +18,13 @@
         slides[slideIndex - 1].style.display = "block";
         setTimeout(showSlides, 10000);
     }
+
+    function toggleApplicationForm() {
+        var element = document.getElementById("application-form");
+        if (element.style.display == "none") {
+            element.style.display = "inline-block";
+        } else {
+            element.style.display = "none";
+        }
+    }
 </script>

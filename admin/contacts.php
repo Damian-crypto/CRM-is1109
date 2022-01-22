@@ -7,6 +7,7 @@
 	<head>
 		<title>Tribal Exotic CRM | Admin Page</title>
 		<?php include("../styles/css.php"); ?>
+        <?php include("../js/script.php"); ?>
 	</head>
 
 	<body>
@@ -17,9 +18,14 @@
 
             <table>
                 <tr>
-                    <td><button>Create Contact</button></td>
+                    <td><button onclick="toggleApplicationForm()">Create Contact</button></td>
                 </tr>
             </table>
+
+            <div id="application-form">
+                <script>toggleApplicationForm();</script>
+                <?php include('forms/create_contact_form.php'); ?>
+            </div>
 
             <table>
                 <?php

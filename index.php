@@ -3,20 +3,25 @@
 	include('functions/functions.php');
 
 	if (isset($_GET['message'])) {
+		$query = "SELECT * FROM person WHERE email='$_GET[email]'";
+		if (!checkMatchingData($query, $connection)) {
+			echo "adding new items....";
+			$query = "INSERT INTO person VALUE 
+			(NULL, '$_GET[fName]', '$_GET[lName]', '$_GET[email]', '$_GET[phone_no]', '$_GET[title]')";
+			executeQuery($query, $connection);
+		}
 
-		if ()
-		$query = "INSERT INTO person VALUE 
-		(NULL, ".$_GET['fName'].", ".$_GET['lName'].", ".$_GET['email'].", ".$_GET['phone_no'].", ".$_GET['title'].")";
-		$insert_into_person = executeQuery($query, $connection);
+		$query = "SELECT personID FROM person WHERE email='$_GET[email]'";
+		$data = getRawData($query, $connection);
 
-		$query = "INSERT INTO messages VALUE 
-		(NULL, ".$_GET['message'].", NULL, $personID";
-		$insert_into_message = executeQuery($query, $connection);
+		$query = "INSERT INTO messages VALUE (NULL, '$_GET[message]', NULL, $data[personID])";
+		$success = executeQuery($query, $connection);
 
-		if ($insert_into_person && $insert_into_message) {
-			echo 'message sent!';
+		if ($success) {
+			header('location: index.php');
+			echo '<br />message sent!<br />';
 		} else {
-			echo 'message not sent!';
+			echo '<br />message not sent!<br />';
 		}
 	}
 ?>
@@ -74,7 +79,7 @@
 						</tr>
 						<tr>
 							<td><label>email:</label></td>
-							<td><input type="email" name="mail_addr" placeholder="john@gmail.com" /></td>
+							<td><input type="email" name="email" placeholder="john@gmail.com" /></td>
 						</tr>
 						<tr>
 							<td><label>Message:</label></td>

@@ -135,4 +135,12 @@
         padding: 10px;
         text-align: center;
     }
+
+    #application-form {
+        border: 1px solid black;
+        border-radius: 10px;
+        display: none;
+        padding: 10px;
+        text-align: center;
+    }
 </style>

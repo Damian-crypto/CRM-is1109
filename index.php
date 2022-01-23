@@ -2,9 +2,19 @@
 	include('config/setup.php');
 	include('functions/functions.php');
 
-	if (isset($_GET['message'])) {
+	if (isset($_GET['email']) && isset($_GET['message']) && $_GET['email'] != '') {
 		$query = "SELECT * FROM person WHERE email='$_GET[email]'";
 		if (!checkMatchingData($query, $connection)) {
+			$fName = $_GET['fName'];
+			$lName = $_GET['lName'];
+			$phone = $_GET['phone_no'];
+			$title = $_GET['title'];
+
+			if ($fName == '' || $lName == '' || $phone == '' || $title == '') {
+				header('location: index.php');
+				exit();
+			}
+
 			$query = "INSERT INTO person VALUE 
 			(NULL, '$_GET[fName]', '$_GET[lName]', '$_GET[email]', '$_GET[phone_no]', '$_GET[title]')";
 			executeQuery($query, $connection);
@@ -29,6 +39,7 @@
 	<head>
 		<title>Tribal Exotic CRM | Home Page</title>
 		<?php include("styles/css.php"); ?>
+		<?php include('js/script.php'); ?>
 	</head>
 
 	<body>
@@ -57,7 +68,7 @@
 			<center><a id="login-button" href="login.php">Login</a></center>
 
 			<div id="message-form">
-				<form action="index.php?message" method="GET">
+				<form name="leave_message_form" action="index.php" method="GET">
 					<caption>Leave a message</caption>
 					<table>
 						<tr>
@@ -78,11 +89,11 @@
 						</tr>
 						<tr>
 							<td><label>email:</label></td>
-							<td><input type="email" name="email" placeholder="john@gmail.com" /></td>
+							<td><input type="email" name="email" placeholder="john@gmail.com" required/></td>
 						</tr>
 						<tr>
 							<td><label>Message:</label></td>
-							<td><textarea name="message" rows="10" cols="50"></textarea></td>
+							<td><textarea name="message" rows="10" cols="50" required></textarea></td>
 						</tr>
 					</table>
 					<input type="submit" value="Send" />

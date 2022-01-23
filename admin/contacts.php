@@ -1,6 +1,6 @@
 <?php
-    include('page_header.php');
     $page = 'contacts';
+    include('page_header.php');
     $data = [];
 ?>
 
@@ -48,7 +48,7 @@
                                                 </td>
                                                 <td rowspan="3">
                                                     <form action="contacts.php" method="GET">
-                                                        <input name="delete" value="<?php echo $data[$i]['personID']; ?>" hidden />
+                                                        <input name="delete_contact" value="<?php echo $data[$i]['personID']; ?>" hidden />
                                                         <input type="submit" value="Delete" />
                                                     </form>
                                                     <input type="submit" value="Change & Save" />

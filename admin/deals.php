@@ -1,6 +1,6 @@
 <?php
-    include('page_header.php');
     $page = 'deals';
+    include('page_header.php');
 ?>
 
 <html>

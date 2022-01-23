@@ -1,4 +1,4 @@
-<form action="index.php?create_contact" method="GET">
+<form action="index.php" method="GET">
     <caption>Create new contact</caption>
     <table>
         <tr>

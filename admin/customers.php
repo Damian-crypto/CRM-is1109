@@ -1,6 +1,6 @@
 <?php
-    include('page_header.php');
     $page = 'customers';
+    include('page_header.php');
 ?>
 
 <html>

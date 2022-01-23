@@ -27,4 +27,8 @@
             element.style.display = "none";
         }
     }
+
+    function sendEmailAlert(email) {
+        let message = prompt("Enter you reply here to " + email + ": ", "Hello there");
+    }
 </script>

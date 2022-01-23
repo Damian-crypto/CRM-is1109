@@ -5,8 +5,6 @@
 
     session_start();
 
-    $page = 'admin';
-
     if (isset($_GET['register'])) {
         // if the query has "register" keyword re-direct to the register_user.php
         header('location: register_user.php');
@@ -64,11 +62,27 @@
         }
     }
 
-    if (isset($_GET['delete'])) {
-        $query = "DELETE FROM person WHERE personID=$_GET[delete]";
+    if (isset($_GET['delete_contact'])) {
+        $query = "DELETE FROM person WHERE personID=$_GET[delete_contact]";
         if (!executeQuery($query, $connection)) {
             echo 'Delete failed!';
         }
+    }
+
+    if (isset($_GET['delete_message'])) {
+        $query = "DELETE FROM messages WHERE messageID=$_GET[delete_message]";
+        if (!executeQuery($query, $connection)) {
+            echo 'Delete failed!';
+        }
+    }
+
+    if (isset($_GET['create_contact'])) {
+        $query = "INSERT INTO lead VALUE (NULL, $_GET[personID], '$_GET[leadSource]', 2)";
+        if (!executeQuery($query, $connection)) {
+            echo '<br />Insertion failed!<br />';
+        }
+
+        header('location: '.$page.'.php');
     }
 
 ?>

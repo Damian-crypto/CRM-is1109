@@ -1,12 +1,13 @@
 <?php
-    include('page_header.php');
     $page = 'leads';
+    include('page_header.php');
 ?>
 
 <html>
 	<head>
 		<title>Tribal Exotic CRM | Admin Page</title>
 		<?php include("../styles/css.php"); ?>
+        <?php include("../js/script.php"); ?>
 	</head>
 
 	<body>
@@ -18,9 +19,14 @@
             <table>
                 <tr>
                     <td><button>Send Mail</button></td>
-                    <td><button>Create Lead</button></td>
+                    <td><button onclick="toggleApplicationForm()">Create Lead</button></td>
                 </tr>
             </table>
+
+            <div id="application-form">
+                <script>toggleApplicationForm();</script>
+                <?php include('forms/create_lead_form.php'); ?>
+            </div>
 
             <table>
                 <?php
@@ -32,16 +38,16 @@
                         for ($i = 0; $i < $cnt; $i++) {
                             if ($data[$i]['status'] == 1) continue;
                             $query = "SELECT * FROM person WHERE personID=".$data[$i]['personID'];
-                            $data = getData($query, $connection); ?>
+                            $personData = getRawData($query, $connection); ?>
 
                             <tr>
                                 <td><input type="checkbox" /></td>
                                 <td>
                                     <table border="1">
-                                        <tr><td rowspan="3"><img width="60" src="../images/user.png" /></td></tr>
-                                        <tr><td colspan="2"><h2><?php echo $data[$i]['fName'].' '.$data[$i]['lName']; ?></h2></td><td rowspan="3"><button>Delete</button><br /><button>Edit</button></td></tr>
-                                        <tr><td>Phone: <?php echo $data[$i]['phoneNo']; ?></td><td>Email: <?php echo $data[$i]['email']; ?></td></tr>
-                                        <tr><td colspan="2">Title: <?php echo $data[$i]['title']; ?></td></tr>
+                                        <tr><td rowspan="4"><img width="60" src="../images/user.png" /></td></tr>
+                                        <tr><td colspan="2"><h2><?php echo $personData['fName'].' '.$personData['lName']; ?></h2></td><td rowspan="3"><button>Delete</button><br /><button>Edit</button></td></tr>
+                                        <tr><td>Phone: <?php echo $personData['phoneNo']; ?></td><td>Email: <?php echo $personData['email']; ?></td></tr>
+                                        <tr><td>Title: <?php echo $personData['title']; ?></td><td>Lead Source: <?php echo $data[$i]['leadSource']; ?></td></tr>
                                     </table>
                                 </td>
                             </tr>

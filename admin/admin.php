@@ -1,12 +1,13 @@
 <?php
-    include('page_header.php');
     $page = 'admin';
+    include('page_header.php');
 ?>
 
 <html>
 	<head>
 		<title>Tribal Exotic CRM | Admin Page</title>
 		<?php include("../styles/css.php"); ?>
+        <?php include("../js/script.php"); ?>
 	</head>
 
 	<body>
@@ -67,7 +68,13 @@
                                             <tr>
                                                 <td>From: <?php echo $personData['fName'].' '.$personData['lName']; ?></td>
                                                 <td>Message: <?php echo $data[$i]['message']; ?></td>
-                                                <td><button>Reply</button><br /><button>Delete</button></td>
+                                                <td>
+                                                    <input type="button" name="reply" value="Reply" onclick="sendEmailAlert('<?php echo $personData['email']; ?>');" /><br />
+                                                    <form action="admin.php" method="GET">
+                                                        <input name="delete_message" value="<?php echo $data[$i]['messageID']; ?>" hidden />
+                                                        <input type="submit" value="Delete" />
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </table>
                                     </tr>

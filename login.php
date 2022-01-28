@@ -45,21 +45,31 @@
 		<?php include("styles/css.php"); ?>
 	</head>
 
-	<body>
+	<body style="background-image: url('images/bg1.jpg')">
 		<?php if ($show_error_msg) { ?>
 			<div class="error-msg">
 				<p><strong>Login Failed! </strong>incorrect credentials! try again.</p>
 			</div>
 		<?php } ?>
 
-		<form name="loginForm" action="login.php?login" method="post" onsubmit="return(validate());">
-			<label>Username:</label>
-			<input type="text" name="username" placeholder="john123" />
-			<br />
-			<label>Password:</label>
-			<input type="password" name="password" placeholder="1234" />
-			<br />
-			<input type="submit" value="Login"/>
-		</form>
+		<div class="login-form-wrapper">
+			<form class="login-form" name="loginForm" action="login.php?login" method="post" onsubmit="return(validate());">
+				<table>
+					<tr>
+						<td>User Name:</td>
+						<td><input type="text" name="username" placeholder="john123" /></td>
+					</tr>
+					<tr>
+						<td>Password:</td>
+						<td><input type="password" name="password" placeholder="1234" /></td>
+					</tr>
+					<tr style="text-align: center">
+						<td colspan="2">
+							<input id="btn-submit" type="submit" value="Login"/>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
 	</body>
 </html>

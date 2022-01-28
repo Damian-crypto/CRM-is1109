@@ -30,12 +30,13 @@
 
             <table>
                 <?php
-                    $query = "SELECT * FROM person";
+                    $query = "SELECT * FROM person ORDER BY personID DESC";
                     $data = getData($query, $connection);
                     $cnt = count($data);
 
                     if ($cnt > 0) {
                         for ($i = 0; $i < $cnt; $i++) {?>
+                            <a name="<?php echo $data[$i]['personID']; ?>"></a>
                             <tr>
                                 <td>
                                     <form action="contacts.php" method="GET">
@@ -56,7 +57,7 @@
                                             </tr>
                                             <tr><td>Phone: <input name="phone_no" type="text" value="<?php echo $data[$i]['phoneNo']; ?>" /><td>Email: <input name="email" type="text" value="<?php echo $data[$i]['email']; ?>" /></tr>
                                             <tr><td colspan="2">Title: <input name="title" type="text" value="<?php echo $data[$i]['title']; ?>" /></tr>
-                                            <input name="update" value="<?php echo $data[$i]['personID']; ?>" hidden />
+                                            <input name="update_contact" value="<?php echo $data[$i]['personID']; ?>" hidden />
                                         </table>
                                     </form>
                                 </td>

@@ -43,8 +43,9 @@
 	</head>
 
 	<body>
+		<?php include('navbar.php'); ?>
 		<div class="container">
-			<h1>Tribal Exotic Home Page</h1>
+			<h1><center>Tribal Exotic Home Page</center></h1>
 
 			<div class="slideshow-container">
 				<div class="mySlides fade">
@@ -64,11 +65,9 @@
 			</div>
 
 			<?php include("js/script.php"); ?>
-
-			<center><a id="login-button" href="login.php">Login</a></center>
-
-			<div id="message-form">
-				<form name="leave_message_form" action="index.php" method="GET">
+			
+			<div class="message-form-wrapper">
+				<form id="message-form" name="leave_message_form" action="index.php" method="GET">
 					<caption>Leave a message</caption>
 					<table>
 						<tr>
@@ -100,5 +99,7 @@
 				</form>
 			</div>
 		</div>
+
+		<?php include('footer.php'); ?>
 	</body>
 </html>

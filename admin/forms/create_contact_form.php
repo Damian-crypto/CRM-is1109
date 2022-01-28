@@ -1,4 +1,4 @@
-<form action="index.php" method="GET">
+<form action="contacts.php" method="GET">
     <caption>Create new contact</caption>
     <table>
         <tr>
@@ -22,5 +22,6 @@
             <td><input type="email" name="email" placeholder="john@gmail.com" /></td>
         </tr>
     </table>
+    <input name="create_contact" value="true" hidden />
     <input type="submit" value="Save" />
 </form>

@@ -59,16 +59,27 @@
     .container {
         margin-top: 15px;
         margin-left: 15px;
+        margin-bottom: 50px;
     }
 
     .footer {
-        position: fixed;
+        position: relative;
         left: 0;
         bottom: 0;
         width: 100%;
         background-color: #333;
         color: white;
         text-align: center;
+        height: 200px;
+        padding: 50px 0;
+    }
+
+    .footer #copyright {
+        text-align: center;
+        padding-top: 160px;
+        opacity: 0.3;
+        font-size: 13px;
+        margin-bottom: 0;
     }
 
     .slideshow-container * {
@@ -128,7 +139,12 @@
         color: white;
     }
 
-    #message-form {
+    .message-form-wrapper {
+        text-align: center;
+        margin: 20px;
+    }
+
+    .message-form-wrapper #message-form {
         border: 1px solid black;
         border-radius: 10px;
         display: inline-block;
@@ -141,6 +157,25 @@
         border-radius: 10px;
         display: none;
         padding: 10px;
+        text-align: center;
+    }
+
+    .login-form {
+        margin-top: 20%;
+        border: 3px solid blue;
+        display: inline-block;
+        padding: 40px;
+        border-radius: 10px;
+    }
+
+    .login-form #btn-submit {
+        margin-top: 40px;
+        border-radius: 10px;
+        width: 80px;
+        height: 40px;
+    }
+
+    .login-form-wrapper {
         text-align: center;
     }
 </style>

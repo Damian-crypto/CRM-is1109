@@ -70,6 +70,27 @@
 		}
 	}
 
-	
+	function getRunningLeads() {
+        global $connection;
+        $query = "SELECT * FROM leads";
+        $data = getData($query, $connection);
 
+        return $data;
+    }
+
+    function getSystemAdmins() {
+        global $connection;
+        $query = "SELECT * FROM user";
+        $data = getData($query, $connection);
+
+        return $data;
+    }
+
+    function getContacts() {
+        global $connection;
+        $query = "SELECT * FROM person";
+        $data = getData($query, $connection);
+
+        return $data;
+    }
 ?>

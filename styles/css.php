@@ -14,16 +14,6 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
-    .container .column {
-        float: left;
-        width: 50%;
-    }
-
-    .container .row:after { /* add these things after all row classes */
-        display: table; /* display as a table */
-        clear: both; /* clear both right and left elements */
-    }
-
     .navbar {
         overflow: hidden;
         background-color: #333;

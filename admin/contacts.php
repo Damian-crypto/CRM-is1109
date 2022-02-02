@@ -28,7 +28,7 @@
                 <?php include('forms/create_contact_form.php'); ?>
             </div>
 
-            <table>
+            <table class="main-table">
                 <?php
                     $query = "SELECT * FROM person ORDER BY personID DESC";
                     $data = getData($query, $connection);
@@ -37,8 +37,8 @@
                     if ($cnt > 0) {
                         for ($i = 0; $i < $cnt; $i++) {?>
                             <a name="<?php echo $data[$i]['personID']; ?>"></a>
-                            <tr>
-                                <td>
+                            <tr class="main-table-tr">
+                                <td class="main-table-td">
                                     <form action="contacts.php" method="GET">
                                         <table border="1">
                                             <tr><td rowspan="3"><img width="60" src="../images/user.png" /></td></tr>

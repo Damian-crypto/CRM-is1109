@@ -7,7 +7,7 @@
                 <select name="lead_person">
                     <option selected>None</option>
                     <?php
-                        $query = "SELECT * FROM person";
+                        $query = "SELECT * FROM persons";
                         $data = getData($query, $connection);
                         $cnt = count($data);
 

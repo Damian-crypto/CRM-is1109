@@ -5,7 +5,7 @@
 	function checkUserExists($username, $password, $db) {
 		checkConnection($db);
 		// password is encrypted with "SHA1" algorithm
-		$query = "SELECT * FROM user WHERE userName='$username' AND password=sha1('$password')";
+		$query = "SELECT * FROM users WHERE userName='$username' AND password=sha1('$password')";
 		if ($result_set = mysqli_query($db, $query)) {
 			$cnt = mysqli_num_rows($result_set);
 			
@@ -39,7 +39,7 @@
 			return true;
 		}
 
-		echo '<br />'.mysqli_error($db);
+		print_r(mysqli_error($db));
 		return false;
 	}
 
@@ -48,8 +48,11 @@
 		$result_set = mysqli_query($db, $query);
 		$data = array();
 
-		while ($row = mysqli_fetch_assoc($result_set)) {
-			array_push($data, $row);
+		if (!mysqli_error($db))
+		{
+			while ($row = mysqli_fetch_assoc($result_set)) {
+				array_push($data, $row);
+			}
 		}
 
 		return $data;
@@ -80,7 +83,7 @@
 
     function getSystemAdmins() {
         global $connection;
-        $query = "SELECT * FROM user";
+        $query = "SELECT * FROM users";
         $data = getData($query, $connection);
 
         return $data;
@@ -88,7 +91,7 @@
 
     function getContacts() {
         global $connection;
-        $query = "SELECT * FROM person";
+        $query = "SELECT * FROM persons";
         $data = getData($query, $connection);
 
         return $data;

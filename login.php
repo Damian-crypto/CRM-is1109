@@ -45,7 +45,7 @@
 		<?php include("styles/css.php"); ?>
 	</head>
 
-	<body style="background-image: url('images/bg1.jpg')">
+	<body>
 		<?php if ($show_error_msg) { ?>
 			<div class="error-msg">
 				<p><strong>Login Failed! </strong>incorrect credentials! try again.</p>

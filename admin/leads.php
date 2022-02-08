@@ -44,8 +44,10 @@
                              *      2    lead
                              */
                             if ($data[$i]['status'] != 2) continue;
-                            $query = "SELECT * FROM person WHERE personID=".$data[$i]['personID'];
-                            $personData = getRawData($query, $connection); ?>
+                            $query = "SELECT * FROM person WHERE personID=".$data[$i]['personID']."";
+                            $personData = getRawData($query, $connection);
+                            if (!$personData) continue;
+                            ?>
 
                             <tr>
                                 <td><input type="checkbox" name="<?php echo $personData['personID']; ?>" /></td>

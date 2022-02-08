@@ -57,7 +57,7 @@
 
     // This will update an existing contact - contacts.php
     if (isset($_GET['update_contact'])) {
-        $query = "UPDATE person SET fName='$_GET[fName]', lName='$_GET[lName]', email='$_GET[email]', phoneNo='$_GET[phone_no]', title='$_GET[title]' WHERE personID=$_GET[update]";
+        $query = "UPDATE person SET fName='$_GET[fName]', lName='$_GET[lName]', email='$_GET[email]', phoneNo='$_GET[phone_no]', title='$_GET[title]' WHERE personID=$_GET[update_contact]";
         if (!executeQuery($query, $connection)) {
             echo 'Update failed!';
         }
@@ -86,7 +86,7 @@
             $query = "UPDATE leads SET status=2 WHERE personID=$_GET[lead_person]";
             executeQuery($query, $connection);
         } else {
-            $query = "INSERT INTO leads VALUE (NULL, $_GET[personID], '$_GET[leadSource]', 2)";
+            $query = "INSERT INTO leads VALUES (NULL, $_GET[personID], '$_GET[leadSource]', 2)";
             executeQuery($query, $connection);
         }
 
@@ -126,7 +126,7 @@
             header('location: '.$page.'.php');
         }
 
-        $query = "INSERT INTO person VALUE 
+        $query = "INSERT INTO persons VALUES 
         (NULL, '$_GET[fName]', '$_GET[lName]', '$_GET[email]', '$_GET[phone_no]', '$_GET[title]')";
         executeQuery($query, $connection);
 

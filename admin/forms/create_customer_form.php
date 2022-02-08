@@ -13,7 +13,7 @@
 
                         for ($i = 0; $i < $cnt; $i++) {
                             if ($data[$i]['status'] == 1) continue;
-                            $query = "SELECT * FROM person WHERE personID=".$data[$i]['personID']."";
+                            $query = "SELECT * FROM persons WHERE personID=".$data[$i]['personID']."";
                             $personData = getRawData($query, $connection);
                         ?>
                             <option value="<?php echo $personData['personID']?>"><?php echo $personData['fName'].' '.$personData['lName']; ?></option>

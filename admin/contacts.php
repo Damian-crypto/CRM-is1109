@@ -30,7 +30,7 @@
 
             <table class="main-table">
                 <?php
-                    $query = "SELECT * FROM person ORDER BY personID DESC";
+                    $query = "SELECT * FROM persons ORDER BY personID DESC";
                     $data = getData($query, $connection);
                     $cnt = count($data);
 

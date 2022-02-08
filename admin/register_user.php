@@ -18,8 +18,7 @@
 		$email = $_POST['email'];
 		$role = $_POST['role'];
 
-		$query = "INSERT INTO user (userId, userName, fName, lName, password, email, role)
-		VALUES (NULL, '$username', '$firstName', '$lastName', SHA1('$pass'), '$email', '$role')";
+		$query = "INSERT INTO users VALUE (NULL, '$username', '$firstName', '$lastName', SHA1('$pass'), '$email')";
 
 		if (executeQuery($query, $connection)) {
 			$user_added = true;
@@ -49,7 +48,7 @@
 				</div>
 			<?php } ?>
 
-			<form action="register_user.php?register" method="post">
+			<form action="register_user.php" method="post">
 				<table>
 					<tr>
 						<td>User Name:</td>
@@ -81,16 +80,8 @@
 							<input type="email" name="email" placeholder="e-mail" />
 						</td>
 					</tr>
-					<tr>
-						<td>Role:</td>
-						<td>
-							<select name="role">
-								<option value="admin">Administrator</option>
-								<option value="customer">Customer</option>
-							</select>
-						</td>
-					</tr>
 				</table>
+				<input type="text" name="register" value="true" hidden />
 				<input type="submit" value="Register" />
 			</form>
 		</div>

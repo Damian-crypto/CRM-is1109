@@ -73,6 +73,14 @@
 		}
 	}
 
+	function getRunningDeals() {
+		global $connection;
+		$query = "SELECT * FROM deals";
+		$data = getData($query, $connection);
+
+		return $data;
+	}
+
 	function getRunningLeads() {
         global $connection;
         $query = "SELECT * FROM leads";
@@ -95,5 +103,9 @@
         $data = getData($query, $connection);
 
         return $data;
+    }
+
+    function orDefault($src, $default) {
+    	return ($src == '' || $src == NULL) ? $default : $src;
     }
 ?>

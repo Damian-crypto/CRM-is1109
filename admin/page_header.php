@@ -5,9 +5,9 @@
 
     session_start();
 
-    if (isset($_GET['register'])) {
+    if (isset($_GET['users'])) {
         // if the query has "register" keyword re-direct to the register_user.php
-        header('location: register_user.php');
+        header('location: users.php');
     }
 
     if (!isset($_SESSION['current_user'])) {
@@ -86,7 +86,7 @@
             $query = "UPDATE leads SET status=2 WHERE personID=$_GET[lead_person]";
             executeQuery($query, $connection);
         } else {
-            $query = "INSERT INTO leads VALUES (NULL, $_GET[personID], '$_GET[leadSource]', 2)";
+            $query = "INSERT INTO leads VALUES (NULL, $_GET[lead_person], '$_GET[leadSource]', 2)";
             executeQuery($query, $connection);
         }
 

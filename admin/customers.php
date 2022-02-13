@@ -8,6 +8,12 @@
 		<title>Tribal Exotic CRM | Admin Page</title>
 		<?php include("../styles/css.php"); ?>
         <?php include("../js/script.php"); ?>
+
+        <script type="text/javascript">
+            function sendMailToCustomer() {
+
+            }
+        </script>
 	</head>
 
 	<body>
@@ -18,7 +24,7 @@
 
             <table>
                 <tr>
-                    <td><button>Send Mail</button></td>
+                    <td><button onclick="sendMailToCustomer()">Send Mail</button></td>
                     <td><button onclick="toggleApplicationForm()">Create Customer</button></td>
                 </tr>
             </table>
@@ -37,11 +43,11 @@
                     if ($cnt > 0) {
                         for ($i = 0; $i < $cnt; $i++) {
                             if ($data[$i]['status'] != 1) continue;
-                            $query = "SELECT * FROM person WHERE personID=".$data[$i]['personID']."";
+                            $query = "SELECT * FROM persons WHERE personID=".$data[$i]['personID']."";
                             $personData = getRawData($query, $connection); ?>
 
                             <tr>
-                                <td><input type="checkbox" /></td>
+                                <td><input type="checkbox" name="personID" value="<?php echo $personData['personID']; ?>" /></td>
                                 <td>
                                     <table border="1">
                                         <tr><td rowspan="3"><img width="60" src="../images/user.png" /></td></tr>

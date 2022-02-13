@@ -5,6 +5,7 @@
     $leadData = getRunningLeads();
     $userData = getSystemAdmins();
     $contactData = getContacts();
+    $runningDeals = getRunningDeals();
 ?>
 
 <html>
@@ -56,7 +57,7 @@
                             ?>
                         </table>
                     </td>
-                    <td>
+                    <td rowspan="100">
                         <strong>Conversations</strong>
                         <table>
                             <?php
@@ -66,13 +67,13 @@
 
                                 if ($cnt > 0) {
                                     for ($i = 0; $i < $cnt; $i++) {
-                                        $query = "SELECT * FROM person WHERE personID=".$data[$i]['personID'];
+                                        $query = "SELECT * FROM persons WHERE personID=".$data[$i]['personID']."";
                                         $personData = getRawData($query, $connection);
                                         ?>
                                         <tr>
                                             <table border="1" cellpadding="10">
                                                 <tr>
-                                                    <td>From: <?php echo $personData['fName'].' '.$personData['lName']; ?></td>
+                                                    <td>From: <?php echo "$personData[fName] $personData[lName]"; ?></td>
                                                     <td>Message: <?php echo $data[$i]['message']; ?></td>
                                                     <td>
                                                         <input type="button" name="reply" value="Reply" onclick="sendEmailAlert('<?php echo $personData['email']; ?>');" /><br />
@@ -136,6 +137,7 @@
                                 </td>
                                 <td>Administrators<br/><?php echo count($userData); ?></td>
                                 <td>Contacts<br/><?php echo count($contactData); ?></td>
+                                <td>Current Deals<br/><?php echo count($runningDeals); ?>
                             </tr>
                         </table>
                     </td>

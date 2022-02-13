@@ -64,8 +64,11 @@
 						<td><input type="password" name="password" placeholder="1234" /></td>
 					</tr>
 					<tr style="text-align: center">
-						<td colspan="2">
+						<td>
 							<input id="btn-submit" type="submit" value="Login"/>
+						</td>
+						<td>
+							<a href="index.php">Go back to home</a>
 						</td>
 					</tr>
 				</table>

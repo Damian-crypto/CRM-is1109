@@ -3,7 +3,7 @@
 	include('functions/functions.php');
 
 	if (isset($_GET['email']) && isset($_GET['message']) && $_GET['email'] != '') {
-		$query = "SELECT * FROM person WHERE email='$_GET[email]'";
+		$query = "SELECT * FROM persons WHERE email='$_GET[email]'";
 		if (!checkMatchingData($query, $connection)) {
 			$fName = $_GET['fName'];
 			$lName = $_GET['lName'];
@@ -15,15 +15,15 @@
 				exit();
 			}
 
-			$query = "INSERT INTO person VALUE 
+			$query = "INSERT INTO persons VALUES
 			(NULL, '$_GET[fName]', '$_GET[lName]', '$_GET[email]', '$_GET[phone_no]', '$_GET[title]')";
 			executeQuery($query, $connection);
 		}
 
-		$query = "SELECT personID FROM person WHERE email='$_GET[email]'";
+		$query = "SELECT personID FROM persons WHERE email='$_GET[email]'";
 		$data = getRawData($query, $connection);
 
-		$query = "INSERT INTO messages VALUE (NULL, '$_GET[message]', NULL, $data[personID])";
+		$query = "INSERT INTO messages VALUES (NULL, '$_GET[message]', NULL, $data[personID])";
 		$success = executeQuery($query, $connection);
 
 		if ($success) {

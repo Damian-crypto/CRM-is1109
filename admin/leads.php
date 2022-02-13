@@ -44,7 +44,7 @@
                              *      2    lead
                              */
                             if ($data[$i]['status'] != 2) continue;
-                            $query = "SELECT * FROM person WHERE personID=".$data[$i]['personID']."";
+                            $query = "SELECT * FROM persons WHERE personID=".$data[$i]['personID']."";
                             $personData = getRawData($query, $connection);
                             if (!$personData) continue;
                             ?>
@@ -57,14 +57,19 @@
                                         <tr>
                                             <td colspan="2"><h2><?php echo $personData['fName'].' '.$personData['lName']; ?></h2></td>
                                             <td rowspan="3">
+                                                <br />
                                                 <form action="leads.php" method="GET">
                                                     <input name="delete_lead" value="<?php echo $personData['personID']; ?>" hidden />
                                                     <input type="submit" value="Delete" />
                                                 </form>
                                                 <a href="contacts.php#<?php echo $personData['personID']; ?>">
                                                     <input type="button" value="Edit" />
-                                                </a><br />
-                                                <button>Add To Customers</button><br />
+                                                </a>
+                                                <br />
+                                                <form action="leads.php" method="GET">
+                                                    <input name="convert_lead" value="<?php echo $personData['personID']; ?>" hidden />
+                                                    <input type="submit" value="Convert" />
+                                                </form>
                                             </td>
                                         </tr>
                                         <tr><td>Phone: <?php echo $personData['phoneNo']; ?></td><td>Email: <?php echo $personData['email']; ?></td></tr>

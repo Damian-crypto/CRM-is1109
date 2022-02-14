@@ -8,12 +8,6 @@
 		<title>Tribal Exotic CRM | Admin Page</title>
 		<?php include("../styles/css.php"); ?>
         <?php include("../js/script.php"); ?>
-
-        <script type="text/javascript">
-            function sendMailToCustomer() {
-
-            }
-        </script>
 	</head>
 
 	<body>
@@ -53,7 +47,12 @@
                                         <tr><td rowspan="3"><img width="60" src="../images/user.png" /></td></tr>
                                         <tr>
                                             <td colspan="2"><h2><?php echo $personData['fName'].' '.$personData['lName']; ?></h2></td>
-                                            <td rowspan="3"><button>Remove</button><br /><button>Send Mail</button></td>
+                                            <td rowspan="3">
+                                                <form action="customers.php" method="GET">
+                                                    <input type="text" name="remove_customer" value="<?php echo $personData['personID']; ?>" hidden />
+                                                    <input type="submit" value="Remove" />
+                                                </form>
+                                            </td>
                                         </tr>
                                         <tr><td>Phone: <?php echo $personData['phoneNo']; ?></td><td>Email: <?php echo $personData['email']; ?></td></tr>
                                         <tr><td colspan="2">Title: <?php echo $personData['title']; ?></td></tr>

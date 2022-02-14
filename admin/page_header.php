@@ -133,4 +133,18 @@
         header('location: '.$page.'.php');
     }
 
+    if (isset($_GET['convert_lead'])) {
+        $query = "UPDATE leads SET status=1 WHERE personID=$_GET[convert_lead]";
+        executeQuery($query, $connection);
+
+        header('location: '.$page.'.php');
+    }
+
+    if (isset($_GET['remove_customer'])) {
+        $query = "UPDATE leads SET status=2 WHERE personID=$_GET[remove_customer]";
+        executeQuery($query, $connection);
+
+        header('location: '.$page.'.php');
+    }
+
 ?>

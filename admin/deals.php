@@ -6,14 +6,28 @@
 <html>
 	<head>
 		<title>Tribal Exotic CRM | Admin Page</title>
-		<?php include("../styles/css.php"); ?>
+		<?php
+            include("../styles/css.php");
+            include("../js/script.php");
+        ?>
 	</head>
 
 	<body>
 		<?php include('navbar.php'); ?>
 
 		<div class="container">
-			<h1>Welcome, <?php echo $current_user; ?>!</h1>
+			<h1>Current Deals</h1>
+
+            <table>
+                <tr>
+                    <td><button onclick="toggleApplicationForm()">Create Deal</button></td>
+                </tr>
+            </table>
+
+            <div id="application-form">
+                <script>toggleApplicationForm();</script>
+                <?php include('forms/create_deal_form.php'); ?>
+            </div>
 
             <table border="1" cellpadding="10">
                 <tr>

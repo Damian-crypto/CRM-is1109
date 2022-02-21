@@ -17,6 +17,7 @@
 
 		<div class="container">
 			<h1>Current Deals</h1>
+            <hr />
 
             <table>
                 <tr>
@@ -37,15 +38,16 @@
                     <th>Closing Date</th>
                     <th>Stage</th>
                     <th>Contact</th>
+                    <th>Actions</th>
                 </tr>
                 <?php
-                    $query = "SELECT * FROM deal";
+                    $query = "SELECT * FROM deals";
                     $data = getData($query, $connection);
                     $cnt = count($data);
 
                     if ($cnt > 0) {
                         for ($i = 0; $i < $cnt; $i++) {
-                            $query = "SELECT * FROM person WHERE personID=".$data[$i]['contactID']."";
+                            $query = "SELECT * FROM persons WHERE personID=".$data[$i]['contactID']."";
                             $contactData = getRawData($query, $connection);
                         ?>
                             <tr>
@@ -55,6 +57,12 @@
                                 <td><?php echo $data[$i]['closingDate']; ?></td>
                                 <td><?php echo $data[$i]['description']; ?></td>
                                 <td><?php echo $contactData['fName'].' '.$contactData['lName']; ?></td>
+                                <td>
+                                    <form>
+                                        <input type="text" name="delete_deal_id" value="<?php echo $data[$i]['dealID']; ?>" hidden/>
+                                        <input type="submit" value="Delete Deal" />
+                                    </form>
+                                </td>
                             </tr>
 
                         <?php }

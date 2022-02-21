@@ -38,13 +38,7 @@
                 <textarea name="description"></textarea>
             </td>
         </tr>
-        <tr>
-            <td>Contact:</td>
-            <td>
-                
-            </td>
-        </tr>
     </table>
-    <input name="create_lead" value="true" hidden />
+    <input name="create_deal" value="true" hidden />
     <input type="submit" value="Save" />
 </form>

@@ -15,6 +15,7 @@
 
 		<div class="container">
 			<h1>Current Leads</h1>
+            <hr />
 
             <table>
                 <tr>
@@ -30,7 +31,7 @@
 
             <table>
                 <?php
-                    $query = "SELECT * FROM leads";
+                    $query = "SELECT * FROM leads WHERE status = 2";
                     $data = getData($query, $connection);
                     $cnt = count($data);
 
@@ -43,7 +44,6 @@
                              *      3    contact
                              *      2    lead
                              */
-                            if ($data[$i]['status'] != 2) continue;
                             $query = "SELECT * FROM persons WHERE personID=".$data[$i]['personID']."";
                             $personData = getRawData($query, $connection);
                             if (!$personData) continue;

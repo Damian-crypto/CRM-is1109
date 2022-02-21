@@ -15,6 +15,7 @@
 
 		<div class="container">
 			<h1 style="position: relative">Current Customers</h1>
+            <hr />
 
             <table>
                 <tr>

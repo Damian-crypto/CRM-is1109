@@ -5,7 +5,7 @@
 	<a href="admin.php?contacts" <?php if ($page == 'contacts') echo 'class="active"'; ?>>Contacts</a>
 	<a href="admin.php?customers" <?php if ($page == 'customers') echo 'class="active"'; ?>>Customers</a>
 	<a href="admin.php?users" <?php if ($page == 'users') echo 'class="active"'; ?>>Users</a>
-	<a id="avatar" href="#">
+	<a id="avatar" href="#" >
 		<img width="10" src="../images/user.png" alt="user image here" />
 		<?php echo "   ".$_SESSION['current_user']; ?>
 	</a>

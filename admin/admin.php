@@ -20,6 +20,7 @@
 
 		<div class="container">
 			<h1>Welcome, <?php echo $current_user; ?>!</h1>
+            <hr />
 
             <table cellspacing="10px">
                 <tr>
@@ -35,21 +36,21 @@
                                 <th>Contact</th>
                             </tr>
                             <?php
-                                $query = "SELECT * FROM deal WHERE closingDate <= '".date('Y-m').'-31'."'";
+                                $query = "SELECT * FROM deals WHERE closingDate <= '".date('Y-m').'-31'."'";
                                 $data = getData($query, $connection);
                                 $cnt = count($data);
 
                                 if ($cnt > 0) {
                                     for ($i = 0; $i < $cnt; $i++) {
-                                        $query = "SELECT * FROM person WHERE personID=".$data[$i]['contactID']."";
-                                        $contactData = getRawData($query, $connection);
+                                        $query = "SELECT * FROM persons WHERE personID=".$data[$i]['contactID']."";
+                                        $personData = getRawData($query, $connection);
                                     ?>
                                         <tr>
                                             <td><?php echo $data[$i]['dealName']; ?></td>
                                             <td>$ <?php echo $data[$i]['amount']; ?></td>
                                             <td><?php echo $data[$i]['closingDate']; ?></td>
                                             <td><?php echo $data[$i]['description']; ?></td>
-                                            <td><?php echo $contactData['fName'].' '.$contactData['lName']; ?></td>
+                                            <td><?php echo $personData['fName'].' '.$personData['lName']; ?></td>
                                         </tr>
 
                                     <?php }
@@ -128,11 +129,7 @@
                                 <td>
                                     Conversions<br/>
                                     <?php
-                                        $cnt = 0;
-                                        for ($i = 0; $i < count($leadData); $i++) {
-                                            if ($leadData[$i]['status'] == 1) $cnt++;
-                                        }
-                                        echo $cnt;
+                                        echo count(getMessages());
                                     ?>
                                 </td>
                                 <td>Administrators<br/><?php echo count($userData); ?></td>

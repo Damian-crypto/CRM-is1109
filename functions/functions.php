@@ -1,6 +1,6 @@
 <?php
 	/** This function will check whether the user is in the database
-	 *  if yes return the "role" of that user, otherwise "null"
+	 *  if yes return true otherwise false
 	 */
 	function checkUserExists($username, $password, $db) {
 		checkConnection($db);
@@ -17,7 +17,7 @@
 		return false;
 	}
 
-	/** This function will execute the specified query
+	/** This function will execute the specified query in the database.
 	 *  if the query success, return true otherwise false
 	 */
 	function executeQuery($query, $db) {
@@ -27,10 +27,13 @@
 			return true;
 		}
 
-		print_r(mysqli_error($db));
+		print_r(mysqli_error($db)); // print the mysql errors after the execution of the above query
 		return false;
 	}
 
+	/** This function will execute the specified query (specially for searching).
+	 *  if there there is a row that match to the specified data this will return true
+	 */
 	function checkMatchingData($query, $db) {
 		checkConnection($db);
 		$result_set = mysqli_query($db, $query) or die();
@@ -39,7 +42,7 @@
 			return true;
 		}
 
-		print_r(mysqli_error($db));
+		print_r(mysqli_error($db)); // print the mysql errors after the execution of the above query
 		return false;
 	}
 
@@ -84,6 +87,14 @@
 	function getRunningLeads() {
         global $connection;
         $query = "SELECT * FROM leads";
+        $data = getData($query, $connection);
+
+        return $data;
+    }
+
+	function getMessages() {
+        global $connection;
+        $query = "SELECT * FROM messages";
         $data = getData($query, $connection);
 
         return $data;

@@ -42,6 +42,7 @@
 
 		<div class="container">
 			<h1 style="position: relative">System Administrators</h1>
+			<hr />
 
 			<?php if ($user_not_added) { ?>
 				<div class="error-msg">

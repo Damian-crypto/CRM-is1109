@@ -7,7 +7,7 @@
                 <select name="lead_person">
                     <option selected>None</option>
                     <?php
-                        $query = "SELECT * FROM persons";
+                        $query = "SELECT * FROM persons WHERE personID NOT IN (SELECT personID FROM leads)";
                         $data = getData($query, $connection);
                         $cnt = count($data);
 
@@ -23,7 +23,7 @@
         <tr>
             <td>Lead Source:</td>
             <td>
-                <input type="text" name="leadSource" placeholder="by email, ..." />
+                <input type="text"  placeholder="YouTube, Facebook, etc..." />
             </td>
         </tr>
     </table>

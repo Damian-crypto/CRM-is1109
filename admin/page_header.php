@@ -57,7 +57,7 @@
 
     // This will update an existing contact - contacts.php
     if (isset($_GET['update_contact'])) {
-        $query = "UPDATE person SET fName='$_GET[fName]', lName='$_GET[lName]', email='$_GET[email]', phoneNo='$_GET[phone_no]', title='$_GET[title]' WHERE personID=$_GET[update_contact]";
+        $query = "UPDATE persons SET fName='$_GET[fName]', lName='$_GET[lName]', email='$_GET[email]', phoneNo='$_GET[phone_no]', title='$_GET[title]' WHERE personID=$_GET[update_contact]";
         if (!executeQuery($query, $connection)) {
             echo 'Update failed!';
         }
@@ -65,7 +65,15 @@
 
     // This will remove an existing contact from contact list - contacts.php
     if (isset($_GET['delete_contact'])) {
-        $query = "DELETE FROM person WHERE personID=$_GET[delete_contact]";
+        $query = "DELETE FROM persons WHERE personID=$_GET[delete_contact]";
+        if (!executeQuery($query, $connection)) {
+            echo 'Delete failed!';
+        }
+    }
+
+    // This will remove an existing contact from contact list - contacts.php
+    if (isset($_GET['delete_deal_id'])) {
+        $query = "DELETE FROM deals WHERE dealID=$_GET[delete_deal_id]";
         if (!executeQuery($query, $connection)) {
             echo 'Delete failed!';
         }
@@ -89,6 +97,14 @@
             $query = "INSERT INTO leads VALUES (NULL, $_GET[lead_person], '$_GET[leadSource]', 2)";
             executeQuery($query, $connection);
         }
+
+        header('location: '.$page.'.php');
+    }
+
+    // This will make new deal - deals.php
+    if (isset($_GET['create_deal'])) {
+        $query = "INSERT INTO deals (dealName, amount, contactID, description, closingDate) VALUES ('$_GET[dealname]', $_GET[dealamount], $_GET[deal_person], '$_GET[description]', '$_GET[closingdate]')";
+        executeQuery($query, $connection);
 
         header('location: '.$page.'.php');
     }

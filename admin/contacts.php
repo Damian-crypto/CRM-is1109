@@ -16,6 +16,7 @@
 
 		<div class="container">
 			<h1>Contacts</h1>
+            <hr />
 
             <table>
                 <tr>
@@ -36,8 +37,9 @@
 
                     if ($cnt > 0) {
                         for ($i = 0; $i < $cnt; $i++) {?>
-                            <a name="<?php echo $data[$i]['personID']; ?>"></a>
+                            <span id="<?php echo $data[$i]['personID']; ?>"></span>
                             <tr class="main-table-tr">
+                                <td><?php echo $i + 1; ?></td>
                                 <td class="main-table-td">
                                     <form action="contacts.php" method="GET">
                                         <table border="1">

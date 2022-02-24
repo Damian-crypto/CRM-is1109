@@ -63,12 +63,31 @@
         }
     }
 
+    // This will update an existing user - users.php
+    if (isset($_POST['change_user'])) {
+        $query = "UPDATE users SET userName='$_POST[userName]', fName='$_POST[fName]', lName='$_POST[lName]', email='$_POST[email]', password=SHA1('$_POST[password]') WHERE userID=$_POST[change_user]";
+
+        if (executeQuery($query, $connection)) {
+            $_SESSION['current_user'] = $_POST['userName'];
+        }
+    }
+
     // This will remove an existing contact from contact list - contacts.php
     if (isset($_GET['delete_contact'])) {
         $query = "DELETE FROM persons WHERE personID=$_GET[delete_contact]";
         if (!executeQuery($query, $connection)) {
             echo 'Delete failed!';
         }
+    }
+
+    // This will remove an existing admin from admin list - users.php
+    if (isset($_GET['delete_user'])) {
+        $query = "DELETE FROM users WHERE userID=$_GET[delete_user]";
+        if (!executeQuery($query, $connection)) {
+            echo 'Delete failed!';
+        }
+
+        header('location: ../index.php');
     }
 
     // This will remove an existing contact from contact list - contacts.php
@@ -144,6 +163,20 @@
 
         $query = "INSERT INTO persons VALUES 
         (NULL, '$_GET[fName]', '$_GET[lName]', '$_GET[email]', '$_GET[phone_no]', '$_GET[title]')";
+        executeQuery($query, $connection);
+
+        header('location: '.$page.'.php');
+    }
+
+    if (isset($_POST['register'])) {
+        $username = $_POST['username'];
+        $firstName = $_POST['fName'];
+        $lastName = $_POST['lName'];
+        $pass = $_POST['password'];
+        $email = $_POST['email'];
+
+        $query = "INSERT INTO users (userName, fName, lName, password, email) VALUES ('$username', '$firstName', '$lastName', SHA1('$pass'), '$email')";
+
         executeQuery($query, $connection);
 
         header('location: '.$page.'.php');

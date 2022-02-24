@@ -50,10 +50,6 @@
                                                     Last Name: <input name="lName" type="text" value="<?php echo $data[$i]['lName']; ?>" />
                                                 </td>
                                                 <td rowspan="3">
-                                                    <form action="contacts.php" method="GET">
-                                                        <input name="delete_contact" value="<?php echo $data[$i]['personID']; ?>" hidden />
-                                                        <input type="submit" value="Delete" />
-                                                    </form>
                                                     <input type="submit" value="Change & Save" />
                                                 </td>
                                             </tr>
@@ -61,6 +57,10 @@
                                             <tr><td colspan="2">Title: <input name="title" type="text" value="<?php echo $data[$i]['title']; ?>" /></tr>
                                             <input name="update_contact" value="<?php echo $data[$i]['personID']; ?>" hidden />
                                         </table>
+                                    </form>
+                                    <form action="contacts.php" method="GET">
+                                        <input name="delete_contact" value="<?php echo $data[$i]['personID']; ?>" hidden />
+                                        <input type="submit" value="Delete" />
                                     </form>
                                 </td>
                             </tr>

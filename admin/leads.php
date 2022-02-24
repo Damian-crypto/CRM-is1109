@@ -65,9 +65,9 @@
                                                 <a href="contacts.php#<?php echo $personData['personID']; ?>">
                                                     <input type="button" value="Edit" />
                                                 </a>
-                                                <br />
                                                 <form action="leads.php" method="GET">
                                                     <input name="convert_lead" value="<?php echo $personData['personID']; ?>" hidden />
+                                                    <br />
                                                     <input type="submit" value="Convert" />
                                                 </form>
                                             </td>
